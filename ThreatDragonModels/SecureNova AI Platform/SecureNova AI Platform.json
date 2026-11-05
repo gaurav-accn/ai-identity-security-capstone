@@ -1520,7 +1520,8 @@
             "shape": "flow",
             "attrs": {
               "line": {
-                "stroke": "#333333",
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "targetMarker": {
                   "name": "block"
                 },
@@ -1541,16 +1542,61 @@
               "outOfScope": false,
               "isTrustBoundary": false,
               "reasonOutOfScope": "",
-              "hasOpenThreats": false,
+              "hasOpenThreats": true,
               "isBidirectional": false,
               "isEncrypted": false,
               "isPublicNetwork": false,
               "protocol": "",
-              "threats": [],
+              "threats": [
+                {
+                  "id": "f829fe5b-201e-4321-aa26-db3dc4e942e0",
+                  "title": "User JWT leaked in transit or logs",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Information disclosure",
+                  "description": "The customer's access token (JWT) travels with every chat message. If it leaks from the browser, logs or an insecure network, an attacker can reuse it to chat and act as that customer.",
+                  "mitigation": "Short token expiry; validate signature, audience, issuer and expiry on every request; HTTPS only; never put tokens in URLs or logs; MFA on login.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 1,
+                  "score": "6"
+                },
+                {
+                  "id": "642b3c21-fd1d-438d-ac08-7cf24166d43a",
+                  "title": "Chat message or JWT modified in transit",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Tampering",
+                  "description": "An attacker on an insecure network intercepts the request and changes the message content or token before it reaches the Chat API.",
+                  "mitigation": "HTTPS/TLS only with HSTS; reject requests whose JWT signature does not verify.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 2,
+                  "score": "5"
+                },
+                {
+                  "id": "60bfb4e8-0943-48b3-953b-369845a43452",
+                  "title": "Chat endpoint flooded with requests",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Denial of service",
+                  "description": "An attacker sends thousands of chat requests, overloading the Chat API and burning LLM budget so real customers cannot use the service.",
+                  "mitigation": "Rate limiting per user and IP; request size limits; WAF; spending caps on the LLM API key.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 3,
+                  "score": "5"
+                }
+              ],
               "trustBoundaryIds": [
                 "bf365a67-0a0c-41a4-8e7b-b6f8d8c51314",
                 "a174736b-dbdf-4071-b142-397caa8f2364"
-              ]
+              ],
+              "threatFrequency": {
+                "tampering": 1,
+                "informationDisclosure": 1,
+                "denialOfService": 1
+              }
             },
             "labels": [
               "3. Chat message + user JWT"
@@ -2488,6 +2534,6 @@
     ],
     "diagramTop": 1,
     "reviewer": "",
-    "threatTop": 0
+    "threatTop": 3
   }
 }
