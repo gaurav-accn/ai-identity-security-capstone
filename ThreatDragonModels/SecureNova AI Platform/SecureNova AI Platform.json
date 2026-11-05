@@ -1,0 +1,33 @@
+{
+  "version": "2.6.2",
+  "release_version": "1.0",
+  "released_at": "2026-11-05",
+  "summary": {
+    "title": "SecureNova AI Platform",
+    "owner": "Kunwar Gaurav Sahu",
+    "description": "SecureNova’s AI customer-support agent answers customer questions and takes actions such as order lookups and refunds. Customers log in through Auth0 (Authorization Code + PKCE, MFA). The AI agent uses an OAuth M2M client to get short-lived tokens, calls an external LLM with an API key, retrieves documents through a RAG pipeline, and executes tools through an MCP server that calls internal APIs. This model covers six identities: human users, AI agent, OAuth M2M client, LLM API key, RAG pipeline service identity and MCP server identity.",
+    "id": 0
+  },
+  "detail": {
+    "contributors": [
+      {
+        "name": "Kunwar Gaurav Sahu"
+      }
+    ],
+    "diagrams": [
+      {
+        "id": 0,
+        "title": "AI Agent Data Flow",
+        "diagramType": "STRIDE",
+        "placeholder": "New STRIDE diagram description",
+        "thumbnail": "./public/content/images/thumbnail.stride.jpg",
+        "version": "2.6.2",
+        "cells": [],
+        "description": "End-to-end flow of one customer request: login, chat, RAG retrieval, LLM call and tool execution via MCP."
+      }
+    ],
+    "diagramTop": 1,
+    "reviewer": "",
+    "threatTop": 0
+  }
+}
