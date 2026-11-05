@@ -1,0 +1,64 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Page-1" id="v0LoLDHs0_qw8Qruoq6y">
+    <mxGraphModel dx="2127" dy="833" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="tvbdBnmeUgzaiMHt4o-T-21" edge="1" parent="1" source="tvbdBnmeUgzaiMHt4o-T-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;defaultLabelBackgroundColor=page;endArrow=none;endFill=0;" target="tvbdBnmeUgzaiMHt4o-T-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="tvbdBnmeUgzaiMHt4o-T-1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;roundedPerimeter=1;fillColor=#1F3864;fontStyle=1;fontColor=#FFFFFF;" value="&lt;font style=&quot;font-size: 20px;&quot;&gt;GOAL:  Poison the RAG knowledge base to control the AI agent&lt;/font&gt;" vertex="1">
+          <mxGeometry height="120" width="440" x="280" y="10" as="geometry" />
+        </mxCell>
+        <mxCell id="tvbdBnmeUgzaiMHt4o-T-22" edge="1" parent="1" source="tvbdBnmeUgzaiMHt4o-T-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;defaultLabelBackgroundColor=page;endArrow=none;endFill=0;" target="tvbdBnmeUgzaiMHt4o-T-12">
+          <mxGeometry relative="1" x="0.0044" as="geometry" />
+        </mxCell>
+        <mxCell id="tvbdBnmeUgzaiMHt4o-T-24" edge="1" parent="1" source="tvbdBnmeUgzaiMHt4o-T-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;defaultLabelBackgroundColor=page;endArrow=none;endFill=0;" target="tvbdBnmeUgzaiMHt4o-T-8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="tvbdBnmeUgzaiMHt4o-T-25" edge="1" parent="1" source="tvbdBnmeUgzaiMHt4o-T-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;defaultLabelBackgroundColor=page;endArrow=none;endFill=0;" target="tvbdBnmeUgzaiMHt4o-T-13">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="tvbdBnmeUgzaiMHt4o-T-26" edge="1" parent="1" source="tvbdBnmeUgzaiMHt4o-T-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;defaultLabelBackgroundColor=page;endArrow=none;endFill=0;" target="tvbdBnmeUgzaiMHt4o-T-14">
+          <mxGeometry relative="1" x="0.0018" as="geometry" />
+        </mxCell>
+        <mxCell id="tvbdBnmeUgzaiMHt4o-T-2" parent="1" style="ellipse;whiteSpace=wrap;html=1;shapeInside=1;fontStyle=1;fillColor=#DAE8FC;" value="OR" vertex="1">
+          <mxGeometry height="50" width="95" x="452.5" y="160" as="geometry" />
+        </mxCell>
+        <mxCell id="tvbdBnmeUgzaiMHt4o-T-8" parent="1" style="rounded=1;whiteSpace=wrap;html=1;roundedPerimeter=1;fillColor=#FFF2CC;strokeColor=#660000;fontStyle=1" value="A.  Insider or compromised admin edits knowledge-base documents&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;L2 × I4 = 8&lt;/div&gt;" vertex="1">
+          <mxGeometry height="100" width="240" x="-140" y="260" as="geometry" />
+        </mxCell>
+        <mxCell id="tvbdBnmeUgzaiMHt4o-T-12" parent="1" style="rounded=1;whiteSpace=wrap;html=1;roundedPerimeter=1;fillColor=#FFE6CC;strokeColor=#660000;fontStyle=1" value="B. Use a leaked or over-privileged RAG credential to write chunks directly&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;L2 × I5 = 10&lt;/div&gt;" vertex="1">
+          <mxGeometry height="100" width="240" x="201" y="260" as="geometry" />
+        </mxCell>
+        <mxCell id="tvbdBnmeUgzaiMHt4o-T-27" edge="1" parent="1" source="tvbdBnmeUgzaiMHt4o-T-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;defaultLabelBackgroundColor=page;endArrow=none;endFill=0;" target="tvbdBnmeUgzaiMHt4o-T-16">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="tvbdBnmeUgzaiMHt4o-T-13" parent="1" style="rounded=1;whiteSpace=wrap;html=1;roundedPerimeter=1;fillColor=#F8CECC;strokeColor=#333300;fontStyle=1" value="C. Hide instructions in a document that gets ingested&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;L4 × I4 = 16&lt;/div&gt;" vertex="1">
+          <mxGeometry height="100" width="240" x="542" y="260" as="geometry" />
+        </mxCell>
+        <mxCell id="tvbdBnmeUgzaiMHt4o-T-14" parent="1" style="rounded=1;whiteSpace=wrap;html=1;roundedPerimeter=1;fillColor=#FFE6CC;strokeColor=#333300;fontStyle=1" value="D. Compromise an external source the pipeline crawls&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;L3 × I4 = 12&lt;/div&gt;" vertex="1">
+          <mxGeometry height="100" width="240" x="883" y="260" as="geometry" />
+        </mxCell>
+        <mxCell id="tvbdBnmeUgzaiMHt4o-T-28" edge="1" parent="1" source="tvbdBnmeUgzaiMHt4o-T-16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;defaultLabelBackgroundColor=page;endArrow=none;endFill=0;" target="tvbdBnmeUgzaiMHt4o-T-17">
+          <mxGeometry relative="1" x="-0.0025" as="geometry" />
+        </mxCell>
+        <mxCell id="tvbdBnmeUgzaiMHt4o-T-29" edge="1" parent="1" source="tvbdBnmeUgzaiMHt4o-T-16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;defaultLabelBackgroundColor=page;endArrow=none;endFill=0;" target="tvbdBnmeUgzaiMHt4o-T-19">
+          <mxGeometry relative="1" x="-0.0025" as="geometry" />
+        </mxCell>
+        <mxCell id="tvbdBnmeUgzaiMHt4o-T-16" parent="1" style="ellipse;whiteSpace=wrap;html=1;shapeInside=1;fontStyle=1;fillColor=#DAE8FC;" value="AND" vertex="1">
+          <mxGeometry height="50" width="95" x="614.5" y="410" as="geometry" />
+        </mxCell>
+        <mxCell id="tvbdBnmeUgzaiMHt4o-T-17" parent="1" style="rounded=1;whiteSpace=wrap;html=1;roundedPerimeter=1;fillColor=#F5F5F5;strokeColor=#333300;fontStyle=1" value="C1. Attacker can get content into an ingested source (upload, support ticket, shared document)" vertex="1">
+          <mxGeometry height="100" width="182" x="432.5" y="520" as="geometry" />
+        </mxCell>
+        <mxCell id="tvbdBnmeUgzaiMHt4o-T-19" parent="1" style="rounded=1;whiteSpace=wrap;html=1;roundedPerimeter=1;fillColor=#F5F5F5;strokeColor=#333300;fontStyle=1" value="C2. Pipeline doesn’t scan content and the agent treats retrieved chunks as instructions." vertex="1">
+          <mxGeometry height="100" width="182" x="709.5" y="520" as="geometry" />
+        </mxCell>
+        <mxCell id="tvbdBnmeUgzaiMHt4o-T-30" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="&lt;font style=&quot;font-size: 29px;&quot; face=&quot;Garamond&quot;&gt;&lt;b&gt;Scoring: Likelihood (1-5) × Impact (1-5) = Risk Score (1-25).&amp;nbsp;&lt;/b&gt;&lt;/font&gt;&lt;div&gt;&lt;font style=&quot;font-size: 29px;&quot; face=&quot;Garamond&quot;&gt;&lt;b&gt;Red ≥ 15 High, Orange 10-14 Medium, Yellow &amp;lt; 10 low.&lt;/b&gt;&lt;/font&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="140" width="1263" x="-131.5" y="680" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
