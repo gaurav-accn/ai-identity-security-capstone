@@ -83,12 +83,12 @@
               "isTrustBoundary": true,
               "hasOpenThreats": false,
               "crossingFlows": [
+                "47a3c876-d99a-470c-bf87-270f7c0bdec7",
+                "8df0fcc7-42f2-4275-af14-db0e05488c81",
                 "f9e9439b-5adf-4fcf-948a-efbac8bc7961",
                 "175be5f0-c8c9-423f-ba02-ae5d1e3807ec",
                 "8d317a3a-7a1a-4bbb-96c7-91a37f765672",
-                "b35c0be3-d648-47f6-a662-8075482a1e76",
-                "47a3c876-d99a-470c-bf87-270f7c0bdec7",
-                "8df0fcc7-42f2-4275-af14-db0e05488c81"
+                "b35c0be3-d648-47f6-a662-8075482a1e76"
               ],
               "containedElements": [
                 "89eee411-35b1-4505-9e50-008db9db0680",
@@ -162,10 +162,10 @@
               "isTrustBoundary": true,
               "hasOpenThreats": false,
               "crossingFlows": [
-                "c23e480d-5bcb-4808-8cb8-c1869109ed65",
-                "a24ea413-bcdb-4bae-a52a-12fcc43dd0b5",
                 "03559c0a-9666-4b29-9aeb-1b83df4f3f1f",
-                "b9d1f2a4-1d24-4f09-821e-2af4019d28ab"
+                "b9d1f2a4-1d24-4f09-821e-2af4019d28ab",
+                "c23e480d-5bcb-4808-8cb8-c1869109ed65",
+                "a24ea413-bcdb-4bae-a52a-12fcc43dd0b5"
               ],
               "containedElements": [
                 "723db4ba-5104-4b3f-84f1-a1f83cbde44a"
@@ -560,8 +560,8 @@
           },
           {
             "position": {
-              "x": 485,
-              "y": 275
+              "x": 500,
+              "y": 280
             },
             "size": {
               "width": 130,
@@ -680,8 +680,8 @@
           },
           {
             "position": {
-              "x": 952.5,
-              "y": 275
+              "x": 900,
+              "y": 285
             },
             "size": {
               "width": 130,
@@ -1405,6 +1405,272 @@
               "storesInventory": false,
               "threats": []
             }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "1. Login + MFA (Auth Code + PKCE)",
+              "description": "",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [],
+              "trustBoundaryIds": [
+                "bf365a67-0a0c-41a4-8e7b-b6f8d8c51314",
+                "167fbd69-1af9-4ba2-b6da-53530ad426a5"
+              ]
+            },
+            "labels": [
+              "1. Login + MFA (Auth Code + PKCE)"
+            ],
+            "id": "47a3c876-d99a-470c-bf87-270f7c0bdec7",
+            "source": {
+              "cell": "6924a2fc-5b32-41b2-b21f-4280f461bebb",
+              "port": "44cfda49-79e7-45cf-831a-0510a3b5f3d0"
+            },
+            "target": {
+              "cell": "89eee411-35b1-4505-9e50-008db9db0680",
+              "port": "d61fe1eb-c596-4101-b0d4-7503f81e75e5"
+            },
+            "vertices": [
+              {
+                "x": 100,
+                "y": 110
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "2. User access token (JWT)",
+              "description": "",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [],
+              "trustBoundaryIds": [
+                "bf365a67-0a0c-41a4-8e7b-b6f8d8c51314",
+                "167fbd69-1af9-4ba2-b6da-53530ad426a5"
+              ]
+            },
+            "labels": [
+              "2. User access token (JWT)"
+            ],
+            "id": "8df0fcc7-42f2-4275-af14-db0e05488c81",
+            "source": {
+              "cell": "89eee411-35b1-4505-9e50-008db9db0680",
+              "port": "d61fe1eb-c596-4101-b0d4-7503f81e75e5"
+            },
+            "target": {
+              "cell": "6924a2fc-5b32-41b2-b21f-4280f461bebb",
+              "port": "44cfda49-79e7-45cf-831a-0510a3b5f3d0"
+            },
+            "vertices": [
+              {
+                "x": 240,
+                "y": 180
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "3. Chat message + user JWT",
+              "description": "",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [
+                {
+                  "id": "f829fe5b-201e-4321-aa26-db3dc4e942e0",
+                  "title": "User JWT leaked in transit or logs",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Information disclosure",
+                  "description": "The customer's access token (JWT) travels with every chat message. If it leaks from the browser, logs or an insecure network, an attacker can reuse it to chat and act as that customer.",
+                  "mitigation": "Short token expiry; validate signature, audience, issuer and expiry on every request; HTTPS only; never put tokens in URLs or logs; MFA on login.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 1,
+                  "score": "6"
+                },
+                {
+                  "id": "642b3c21-fd1d-438d-ac08-7cf24166d43a",
+                  "title": "Chat message or JWT modified in transit",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Tampering",
+                  "description": "An attacker on an insecure network intercepts the request and changes the message content or token before it reaches the Chat API.",
+                  "mitigation": "HTTPS/TLS only with HSTS; reject requests whose JWT signature does not verify.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 2,
+                  "score": "5"
+                },
+                {
+                  "id": "60bfb4e8-0943-48b3-953b-369845a43452",
+                  "title": "Chat endpoint flooded with requests",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Denial of service",
+                  "description": "An attacker sends thousands of chat requests, overloading the Chat API and burning LLM budget so real customers cannot use the service.",
+                  "mitigation": "Rate limiting per user and IP; request size limits; WAF; spending caps on the LLM API key.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 3,
+                  "score": "5"
+                }
+              ],
+              "trustBoundaryIds": [
+                "bf365a67-0a0c-41a4-8e7b-b6f8d8c51314",
+                "a174736b-dbdf-4071-b142-397caa8f2364"
+              ],
+              "threatFrequency": {
+                "tampering": 1,
+                "informationDisclosure": 1,
+                "denialOfService": 1
+              }
+            },
+            "labels": [
+              "3. Chat message + user JWT"
+            ],
+            "id": "03559c0a-9666-4b29-9aeb-1b83df4f3f1f",
+            "source": {
+              "cell": "6924a2fc-5b32-41b2-b21f-4280f461bebb",
+              "port": "8110d56f-1e8a-4c71-8297-b2aaf788012b"
+            },
+            "target": {
+              "cell": "723db4ba-5104-4b3f-84f1-a1f83cbde44a",
+              "port": "92499ffc-d5fc-4b02-a797-cc1e830f258f"
+            },
+            "vertices": [
+              {
+                "x": 370,
+                "y": 290
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "20. Answer to customer",
+              "description": "",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [],
+              "trustBoundaryIds": [
+                "bf365a67-0a0c-41a4-8e7b-b6f8d8c51314",
+                "a174736b-dbdf-4071-b142-397caa8f2364"
+              ]
+            },
+            "labels": [
+              "20. Answer to customer"
+            ],
+            "id": "b9d1f2a4-1d24-4f09-821e-2af4019d28ab",
+            "source": {
+              "cell": "723db4ba-5104-4b3f-84f1-a1f83cbde44a",
+              "port": "92499ffc-d5fc-4b02-a797-cc1e830f258f"
+            },
+            "target": {
+              "cell": "6924a2fc-5b32-41b2-b21f-4280f461bebb",
+              "port": "8110d56f-1e8a-4c71-8297-b2aaf788012b"
+            },
+            "vertices": [
+              {
+                "x": 370,
+                "y": 390
+              }
+            ]
           },
           {
             "shape": "flow",
@@ -2259,226 +2525,6 @@
               {
                 "x": 1850,
                 "y": 510
-              }
-            ]
-          },
-          {
-            "shape": "flow",
-            "attrs": {
-              "line": {
-                "stroke": "#333333",
-                "targetMarker": {
-                  "name": "block"
-                },
-                "sourceMarker": {
-                  "name": ""
-                },
-                "strokeDasharray": null
-              }
-            },
-            "width": 200,
-            "height": 100,
-            "zIndex": 10,
-            "connector": "smooth",
-            "data": {
-              "type": "tm.Flow",
-              "name": "Data Flow",
-              "description": "",
-              "outOfScope": false,
-              "isTrustBoundary": false,
-              "reasonOutOfScope": "",
-              "hasOpenThreats": false,
-              "isBidirectional": false,
-              "isEncrypted": false,
-              "isPublicNetwork": false,
-              "protocol": "",
-              "threats": [],
-              "trustBoundaryIds": [
-                "bf365a67-0a0c-41a4-8e7b-b6f8d8c51314",
-                "167fbd69-1af9-4ba2-b6da-53530ad426a5"
-              ]
-            },
-            "labels": [
-              "1. Login + MFA (Auth Code + PKCE)"
-            ],
-            "id": "47a3c876-d99a-470c-bf87-270f7c0bdec7",
-            "source": {
-              "cell": "6924a2fc-5b32-41b2-b21f-4280f461bebb",
-              "port": "44cfda49-79e7-45cf-831a-0510a3b5f3d0"
-            },
-            "target": {
-              "cell": "89eee411-35b1-4505-9e50-008db9db0680",
-              "port": "d61fe1eb-c596-4101-b0d4-7503f81e75e5"
-            },
-            "vertices": [
-              {
-                "x": 100,
-                "y": 110
-              }
-            ]
-          },
-          {
-            "shape": "flow",
-            "attrs": {
-              "line": {
-                "stroke": "#333333",
-                "targetMarker": {
-                  "name": "block"
-                },
-                "sourceMarker": {
-                  "name": ""
-                },
-                "strokeDasharray": null
-              }
-            },
-            "width": 200,
-            "height": 100,
-            "zIndex": 10,
-            "connector": "smooth",
-            "data": {
-              "type": "tm.Flow",
-              "name": "Data Flow",
-              "description": "",
-              "outOfScope": false,
-              "isTrustBoundary": false,
-              "reasonOutOfScope": "",
-              "hasOpenThreats": false,
-              "isBidirectional": false,
-              "isEncrypted": false,
-              "isPublicNetwork": false,
-              "protocol": "",
-              "threats": [],
-              "trustBoundaryIds": [
-                "bf365a67-0a0c-41a4-8e7b-b6f8d8c51314",
-                "167fbd69-1af9-4ba2-b6da-53530ad426a5"
-              ]
-            },
-            "labels": [
-              "2. User access token (JWT)"
-            ],
-            "id": "8df0fcc7-42f2-4275-af14-db0e05488c81",
-            "source": {
-              "cell": "89eee411-35b1-4505-9e50-008db9db0680",
-              "port": "d61fe1eb-c596-4101-b0d4-7503f81e75e5"
-            },
-            "target": {
-              "cell": "6924a2fc-5b32-41b2-b21f-4280f461bebb",
-              "port": "44cfda49-79e7-45cf-831a-0510a3b5f3d0"
-            },
-            "vertices": [
-              {
-                "x": 240,
-                "y": 180
-              }
-            ]
-          },
-          {
-            "shape": "flow",
-            "attrs": {
-              "line": {
-                "stroke": "#333333",
-                "targetMarker": {
-                  "name": "block"
-                },
-                "sourceMarker": {
-                  "name": ""
-                },
-                "strokeDasharray": null
-              }
-            },
-            "width": 200,
-            "height": 100,
-            "zIndex": 10,
-            "connector": "smooth",
-            "data": {
-              "type": "tm.Flow",
-              "name": "Data Flow",
-              "description": "",
-              "outOfScope": false,
-              "isTrustBoundary": false,
-              "reasonOutOfScope": "",
-              "hasOpenThreats": false,
-              "isBidirectional": false,
-              "isEncrypted": false,
-              "isPublicNetwork": false,
-              "protocol": "",
-              "threats": [],
-              "trustBoundaryIds": [
-                "bf365a67-0a0c-41a4-8e7b-b6f8d8c51314",
-                "a174736b-dbdf-4071-b142-397caa8f2364"
-              ]
-            },
-            "labels": [
-              "3. Chat message + user JWT"
-            ],
-            "id": "03559c0a-9666-4b29-9aeb-1b83df4f3f1f",
-            "source": {
-              "cell": "6924a2fc-5b32-41b2-b21f-4280f461bebb",
-              "port": "8110d56f-1e8a-4c71-8297-b2aaf788012b"
-            },
-            "target": {
-              "cell": "723db4ba-5104-4b3f-84f1-a1f83cbde44a",
-              "port": "92499ffc-d5fc-4b02-a797-cc1e830f258f"
-            },
-            "vertices": [
-              {
-                "x": 360,
-                "y": 290
-              }
-            ]
-          },
-          {
-            "shape": "flow",
-            "attrs": {
-              "line": {
-                "stroke": "#333333",
-                "targetMarker": {
-                  "name": "block"
-                },
-                "sourceMarker": {
-                  "name": ""
-                },
-                "strokeDasharray": null
-              }
-            },
-            "width": 200,
-            "height": 100,
-            "zIndex": 10,
-            "connector": "smooth",
-            "data": {
-              "type": "tm.Flow",
-              "name": "Data Flow",
-              "description": "",
-              "outOfScope": false,
-              "isTrustBoundary": false,
-              "reasonOutOfScope": "",
-              "hasOpenThreats": false,
-              "isBidirectional": false,
-              "isEncrypted": false,
-              "isPublicNetwork": false,
-              "protocol": "",
-              "threats": [],
-              "trustBoundaryIds": [
-                "bf365a67-0a0c-41a4-8e7b-b6f8d8c51314",
-                "a174736b-dbdf-4071-b142-397caa8f2364"
-              ]
-            },
-            "labels": [
-              "20. Answer to customer"
-            ],
-            "id": "b9d1f2a4-1d24-4f09-821e-2af4019d28ab",
-            "source": {
-              "cell": "723db4ba-5104-4b3f-84f1-a1f83cbde44a",
-              "port": "92499ffc-d5fc-4b02-a797-cc1e830f258f"
-            },
-            "target": {
-              "cell": "6924a2fc-5b32-41b2-b21f-4280f461bebb",
-              "port": "8110d56f-1e8a-4c71-8297-b2aaf788012b"
-            },
-            "vertices": [
-              {
-                "x": 360,
-                "y": 400
               }
             ]
           }
