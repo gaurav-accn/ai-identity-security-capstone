@@ -220,3 +220,4 @@ __marimo__/
 .streamlit/secrets.toml
 token.txt
 id_token.txt
+*_private.pem
