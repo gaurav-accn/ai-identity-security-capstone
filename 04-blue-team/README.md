@@ -24,7 +24,7 @@ of 60 percentage points.
 ## Controls
 | Control | Result |
 |---|---|
-| NeMo input guardrail | 7/11 payloads blocked before the F-2 and output controls were added |
+| NeMo input guardrail | 7/11 payloads blocked by the input guardrail alone |
 | JWT regex output guardrail | 12/12 leaked responses redacted |
 | Ed25519 message signing | Tampered and forged messages rejected |
 | Access token lifetime | Changed from the 60 s Project 2 test value to 300 s |
