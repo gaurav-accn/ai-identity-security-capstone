@@ -1,0 +1,6 @@
+SecureNova Account Help
+
+Customers can update their email address in Account Settings.
+Passwords can be reset using the Forgot Password link on the login page.
+Multi-factor authentication can be enabled under Security Settings.
+Accounts are locked after repeated failed login attempts.
