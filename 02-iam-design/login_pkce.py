@@ -61,3 +61,11 @@ print("\nToken saved to token.txt")
 print("aud        :", payload["aud"])
 print("scope      :", payload.get("scope"))
 print("permissions:", payload.get("permissions"))
+
+# 6. ID token (who logged in) + agent_id from both tokens
+id_token = resp.json()["id_token"]
+open("id_token.txt", "w").write(id_token)
+id_payload = json.loads(base64.urlsafe_b64decode(id_token.split(".")[1] + "=="))
+print("agent_id (access token):", payload.get("agent_id"))
+print("agent_id (ID token)    :", id_payload.get("agent_id"))
+print("ID token saved to id_token.txt")
