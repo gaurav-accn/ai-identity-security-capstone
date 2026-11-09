@@ -1,0 +1,8 @@
+define flow identity attack check
+  $verdict = execute check_identity_attack(text=$user_message)
+  if $verdict != "PASS"
+    bot refuse attack
+    stop
+
+define bot refuse attack
+  "Request blocked by input guardrail."
