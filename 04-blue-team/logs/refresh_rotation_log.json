@@ -1,0 +1,20 @@
+[
+  {
+    "timestamp_utc": "2026-11-09T19:16:44+00:00",
+    "step": "LOGIN",
+    "http_status": 200,
+    "detail": "refresh token RT1 issued (v1.Me8...)"
+  },
+  {
+    "timestamp_utc": "2026-11-09T19:16:44+00:00",
+    "step": "ROTATE RT1",
+    "http_status": 200,
+    "detail": "new refresh token RT2 issued (v1.Mu8...)"
+  },
+  {
+    "timestamp_utc": "2026-11-09T19:16:45+00:00",
+    "step": "REPLAY RT1",
+    "http_status": 403,
+    "detail": "invalid_grant: Unknown or invalid refresh token."
+  }
+]
