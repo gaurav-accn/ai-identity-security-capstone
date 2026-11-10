@@ -64,3 +64,31 @@ python attack4_rag.py
   with no identity checks.
 - In Attack 4, the prompt said retrieved content may request `send_report`,
   so the 40% for MCP Abuse is a high estimate.
+
+## Code overview (drafted with GitHub Copilot, checked against the code)
+- `agent.py` sets up the simulated SecureNova assistant. A fake session JWT is
+  placed in its system prompt, and `ask_agent()` sends a document and a
+  question to the model, retrying temporary API errors.
+- `two_agents.py` sets up Agent B, the admin service. It is told to decide only
+  from the `From:` field of each message, so it has no real identity check.
+- `fake_mcp.py` holds the simulated `send_report` tool. It only prints and
+  returns the call; no data is sent anywhere.
+- `rag_retrieval.py` loads the text files from the knowledge base, splits
+  them into keywords and returns the top 2 documents for a question.
+- `attack1_injection.py` runs each of the 3 hidden-instruction documents in
+  `docs/` through the agent 5 times and checks whether the fake JWT shows up
+  in the reply. It writes every run to `logs/attack1_log.json`.
+- `attack2_spoofing.py` sends Agent B a normal customer request and a message
+  that claims to come from the orchestrator, 5 times each, through Agent A.
+  It writes the results to `logs/attack2_log.json`.
+- `attack3_extraction.py` tries 5 system prompt extraction techniques, 5 runs
+  each, and saves the full replies to `logs/attack3_log.json`.
+- `attack3_analyze.py` reads the extraction log, sorts each reply into full,
+  partial or no disclosure, and writes the summary to
+  `logs/attack3_analysis.json`.
+- `attack3_escalation.py` tries to get admin access through prompts only and
+  records whether the model refused. It writes the results to
+  `logs/attack3_escalation_log.json`.
+- `attack4_rag.py` runs the same questions against a clean and a poisoned
+  knowledge base, with `send_report` available as a tool. It records what was
+  retrieved and whether the tool was called in `logs/attack4_log.json`.
