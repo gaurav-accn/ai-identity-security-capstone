@@ -12,7 +12,7 @@ them, fixes the gaps, and writes the policy.
 | 2 | [`02-iam-design`](02-iam-design) | Auth0 implementation: PKCE, scopes + RBAC (403 test), MFA, attack protection, 60 s credential rotation, `agent_id` Action, SSO, branding | ✅ Done |
 | 3 | [`03-red-team`](03-red-team) | Red team: prompt injection, agent spoofing, system prompt extraction, RAG poisoning, MCP abuse, CVSS + ATLAS | ✅ Done |
 | 4 | [`04-blue-team`](04-blue-team) | Blue team: guardrails, JWT redaction, Ed25519 message signing, Auth0 hardening, anomaly detection, before/after comparison | ✅ Done |
-| 5 | [`05-policy`](05-policy) | Security policy, NIST AI RMF + OWASP LLM Top 10 compliance, presentation | ⏳ |
+| 5 | [`05-policy`](05-policy) | Security policy, NIST AI RMF + OWASP LLM Top 10 compliance, presentation | ✅ Done |
 
 `ThreatDragonModels/` holds the OWASP Threat Dragon model used in Project 1.
 
@@ -25,3 +25,9 @@ jwt.io · MITRE ATLAS
 No secrets are stored in this repo. Credentials live in local `.env` files,
 test tokens in `token.txt` / `id_token.txt`, and the Ed25519 private key in
 `*_private.pem`, all excluded by `.gitignore`.
+
+## GitHub Copilot
+Inline comments in the Project 2–4 code and the "Code overview" sections of
+those READMEs were drafted with GitHub Copilot. I checked each file to make
+sure the code itself did not change, and corrected descriptions that did not
+match the code.
