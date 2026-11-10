@@ -65,3 +65,20 @@ python sso_test.py                   # SSO across two clients
 - Auth0 has no configurable lockout time for brute-force; the IP is blocked for that account until the user unblocks via email. Account-wide lockout is off to avoid locking out real users.
 - Timestamps in the rotation test are UTC (Codespaces time zone).
 - Project 4 will raise the token lifetime to 300 s and add refresh-token rotation.
+
+## Code overview (drafted with GitHub Copilot, checked against the code)
+- `api.py` is the protected API. `verify_token()` checks the RS256 signature
+  with Auth0's public keys, plus the issuer, audience and expiry, and returns
+  401 if any check fails. `require_scope()` returns 403 when a valid token is
+  missing the scope a route needs.
+- `login_pkce.py` builds a PKCE code verifier and challenge (S256) and a random
+  `state`, opens the Auth0 login, checks that `state` comes back unchanged and
+  swaps the code for tokens. It asks for `write:admin` on purpose, to show that
+  RBAC removes it for a customer. It prints the scopes, permissions and
+  `agent_id`, and saves the tokens to `token.txt` and `id_token.txt`.
+- `token_expiry_test.py` gets an M2M token with Client Credentials, calls
+  `/chat`, waits 65 seconds and sends the same token again, printing a
+  timestamp and status code for each step.
+- `sso_test.py` logs in to the second app (Help Portal) with PKCE, then
+  compares its ID token with the one saved by `login_pkce.py`. Same `sub` and
+  same `sid` means one Auth0 session was used for both apps.
