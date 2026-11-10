@@ -12,7 +12,7 @@ from agent_identity import canonical_bytes, send_from_agent_a
 BASE = Path(__file__).resolve().parent
 LOG_FILE = BASE / "logs" / "signature_log.json"
 
-
+# Flip one character in a valid message so the test can prove the signature check catches even a tiny alteration.
 def change_one_character(text, position):
     """Replace exactly one character and describe the change."""
     old = text[position]
@@ -20,7 +20,7 @@ def change_one_character(text, position):
     changed = text[:position] + new + text[position + 1:]
     return changed, f"position {position}: '{old}' -> '{new}'"
 
-
+# Forge a message with an attacker key while claiming to come from Agent A to verify the receiver rejects spoofed senders.
 def forged_message(content):
     """Claim to be Agent A, but sign with an attacker's own key."""
     message = {
@@ -33,7 +33,7 @@ def forged_message(content):
     signature = attacker_key.sign(canonical_bytes(message))
     return {**message, "signature": base64.b64encode(signature).decode("ascii")}
 
-
+# Deliver a single scenario to Agent B and record whether the signature check accepts or rejects it.
 def run_case(name, message, change):
     """Send one message to Agent B and record the outcome."""
     entry = {
@@ -53,7 +53,7 @@ def run_case(name, message, change):
             print(f"        Change: {change}")
     return entry
 
-
+# Exercise valid, tampered, and forged messages so the results show the signal strength of the signature gate.
 def main():
     payloads = json.loads((BASE / "payloads.json").read_text(encoding="utf-8"))
     spoofed = next(p for p in payloads if p["finding"] == "F-2")

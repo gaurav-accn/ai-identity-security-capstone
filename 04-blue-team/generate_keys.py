@@ -10,7 +10,7 @@ KEY_DIR = Path(__file__).resolve().parent / "keys"
 PRIVATE_FILE = KEY_DIR / "agent_private.pem"
 PUBLIC_FILE = KEY_DIR / "agent_public.pem"
 
-
+# Create a fresh Ed25519 keypair and store it in the trusted keys directory for signing and verification.
 def main():
     if PRIVATE_FILE.exists() or PUBLIC_FILE.exists():
         raise SystemExit("Keys already exist. Delete the keys folder to create a new pair.")

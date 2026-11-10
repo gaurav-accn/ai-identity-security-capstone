@@ -24,7 +24,7 @@ LOG_FILE = BASE / "logs" / "refresh_rotation_log.json"
 
 events = []
 
-
+# Encode bytes as URL-safe base64 so PKCE uses the same format expected by Auth0.
 def b64url(data):
     return base64.urlsafe_b64encode(data).rstrip(b"=").decode()
 
@@ -33,13 +33,13 @@ def short(token):
     """Show only a small part of a token in logs and screenshots."""
     return token[:6] + "..."
 
-
+# Keep a searchable ledger of each OAuth step so the rotation test can explain whether the token was accepted or rejected.
 def record(step, status, detail):
     now = datetime.now(timezone.utc).isoformat(timespec="seconds")
     events.append({"timestamp_utc": now, "step": step, "http_status": status, "detail": detail})
     print(f"[{now}] {step} | HTTP {status} | {detail}")
 
-
+# Complete the PKCE login flow and exchange the authorization code for tokens that include a refresh token.
 def login():
     """Authorization Code + PKCE login that also requests a refresh token."""
     verifier = b64url(secrets.token_bytes(32))
@@ -74,7 +74,7 @@ def login():
     response.raise_for_status()
     return response.json()
 
-
+# Submit a refresh request with the token value under test so we can verify whether replaying an old token is rejected.
 def use_refresh_token(token):
     return requests.post(TOKEN_URL, data={
         "grant_type": "refresh_token",
@@ -83,7 +83,7 @@ def use_refresh_token(token):
         "refresh_token": token,
     }, timeout=30)
 
-
+# Issue a refresh token, rotate it, and then replay the stale token to confirm the server enforces rotation.
 def main():
     tokens = login()
     old_token = tokens.get("refresh_token")

@@ -3,6 +3,7 @@ import json
 import re
 from pathlib import Path
 
+# Set paths for the leaked-output source and the local redaction report so the script can read and write known files reliably.
 BASE = Path(__file__).resolve().parent
 LEAK_LOG = BASE.parent / "03-red-team" / "logs" / "attack1_log.json"
 OUTPUT_LOG = BASE / "logs" / "output_guardrail_log.json"
@@ -13,12 +14,12 @@ JWT_PATTERN = re.compile(
 )
 REDACTION = "[REDACTED]"
 
-
+# Replace JWT-like strings with a single marker so leaked tokens are hidden without destroying the surrounding text.
 def redact_jwt(text):
     """Return the redacted text and the number of JWT-shaped strings replaced."""
     return JWT_PATTERN.subn(REDACTION, text)
 
-
+# Keep the preview readable by collapsing long responses around the first detected token and the redaction marker.
 def snippet(text, marker, width=70):
     """Show the part of a long reply around the first marker."""
     start = text.find(marker)
@@ -26,11 +27,12 @@ def snippet(text, marker, width=70):
         return text[:160]
     return text[max(0, start - width):start + len(marker) + width].replace("\n", " ")
 
-
+# Scan each leaked response, redact JWT-shaped strings, and keep a record of which samples still contain a token.
 def main():
     rows = json.loads(LEAK_LOG.read_text(encoding="utf-8"))
     leaked = [r for r in rows if r["result"] == "LEAKED"]
 
+    # Evaluate each leak record and preserve both the original payload and the sanitized version for reporting.
     results = []
     for row in leaked:
         original = row["full_model_response"]
@@ -44,6 +46,7 @@ def main():
             "redacted_response": redacted,
         })
 
+    # Only display a concrete example when the guardrail actually blocked a token in a leaked response.
     fired = [r for r in results if r["jwt_strings_redacted"] > 0]
     if fired:
         example = fired[0]
@@ -55,11 +58,13 @@ def main():
         print("AFTER (returned to user):")
         print(f"  ...{snippet(example['redacted_response'], REDACTION)}...\n")
 
+    # Summarize success and residual risk after redaction so the operator can see whether any token remains.
     remaining = sum(r["jwt_remaining_after"] for r in results)
     print(f"Leaked responses tested : {len(results)}")
     print(f"Responses redacted      : {len(fired)}/{len(results)}")
     print(f"JWTs left after redaction: {remaining}")
 
+    # Confirm the guardrail does not over-redact ordinary text and write the sanitized results for later review.
     clean = "Your order will arrive on Friday. Version 1.2.3 is installed."
     print(f"Clean text unchanged    : {redact_jwt(clean)[0] == clean}")
 

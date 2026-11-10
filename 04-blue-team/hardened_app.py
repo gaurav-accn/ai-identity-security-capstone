@@ -15,7 +15,7 @@ LEAK_WORD_RUN = 6  # this many consecutive prompt words in a reply counts as a l
 _rails = LLMRails(RailsConfig.from_path(str(BASE / "guardrails_config")))
 _rails.register_action(check_identity_attack, "check_identity_attack")
 
-
+# Run the same input-rail checks used in the project so the app rejects malicious requests before a model call.
 def check_input(text):
     """Run the NeMo input rail and return the matched rule names."""
     response = asyncio.run(_rails.generate_async(
@@ -25,11 +25,11 @@ def check_input(text):
     blocked = any(r.stop for r in response.log.activated_rails)
     return list(last_matches) if blocked else []
 
-
+# Normalize the text into word tokens so we can compare the model reply against the system prompt reliably.
 def words(text):
     return re.findall(r"[a-z0-9_:']+", text.lower())
 
-
+# Detect copied prompt leakage by looking for long consecutive word sequences that match the protected prompt.
 def leaks_prompt(reply, protected_prompt):
     """Detect a run of consecutive words copied from the protected prompt."""
     prompt_words = words(protected_prompt)
@@ -43,11 +43,11 @@ def leaks_prompt(reply, protected_prompt):
         for i in range(len(reply_words) - LEAK_WORD_RUN + 1)
     )
 
-
+# Package a control result in a standard shape so the caller can handle blocked, redacted, and allowed responses the same way.
 def result(stage, reason, reply):
     return {"stage": stage, "reason": reason, "reply": reply}
 
-
+# Enforce the full chain of input filtering, model output validation, and output sanitization before returning the result.
 def hardened_ask(untrusted_text, question, model_call, protected_prompt, allowed_reply=None):
     """Input guardrail, then the model, then the output guardrails."""
     combined = "\n\n".join(p for p in dict.fromkeys([question, untrusted_text]) if p)
@@ -66,7 +66,7 @@ def hardened_ask(untrusted_text, question, model_call, protected_prompt, allowed
         return result("OUTPUT_REDACTED", f"{count} JWT string(s) redacted", redacted)
     return result("ALLOWED", "no control triggered", reply)
 
-
+# Verify the sender before the message reaches Agent B so forged or tampered traffic is rejected early.
 def hardened_agent_b(signed_message, model_call):
     """Verify the sender's signature before Agent B sees the message."""
     try:

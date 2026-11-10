@@ -6,6 +6,7 @@ FLAGS = re.IGNORECASE | re.DOTALL
 SECRET = r"(credential|jwt|bearer token|session token|access token|api key|secret)"
 DISCLOSE = r"(include|reveal|print|output|send|share|append|repeat|show|disclose|copy|provide)"
 
+# Define the suspicious patterns to catch prompt injection, secret disclosure, and unauthorized instructions.
 RULES = [
     ("credential_exfiltration",
      rf"\b{DISCLOSE}\b.{{0,120}}\b{SECRET}\b"),
@@ -23,7 +24,7 @@ RULES = [
 
 COMPILED = [(name, re.compile(pattern, FLAGS)) for name, pattern in RULES]
 
-
+# Match every rule against the same user input so the brief can report which triggers fired.
 def find_matches(text):
     """Return the names of every rule that matches the text."""
     return [name for name, pattern in COMPILED if pattern.search(text)]

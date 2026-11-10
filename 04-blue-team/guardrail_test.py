@@ -16,21 +16,23 @@ BASE = Path(__file__).resolve().parent
 LOG_DIR = BASE / "logs"
 RAIL_OPTIONS = {"rails": ["input"], "log": {"activated_rails": True}}
 
+# Store the rules triggered by the last request so the result record can explain why a payload was blocked.
 last_matches = []
 
 
+# NeMo calls this action for each input and returns a block verdict when any suspicious pattern matches.
 async def check_identity_attack(text: str):
     """NeMo action: record matched rules and return the verdict."""
     last_matches[:] = find_matches(text)
     return "BLOCK" if last_matches else "PASS"
 
-
+# Combine the user context with the untrusted payload to mirror the real attack path seen by the model.
 def build_text(item):
     """Combine the user's request with the untrusted attack text."""
     parts = [item["user_input"], item["payload"]]
     return "\n\n".join(p for p in dict.fromkeys(parts) if p)
 
-
+# Run every payload through the rail and keep the per-result verdicts for the final summary.
 async def run_all(rails, payloads):
     results = []
     for item in payloads:
@@ -51,7 +53,7 @@ async def run_all(rails, payloads):
         })
     return results
 
-
+# Initialize the model rails, emit the blocked-by-attack summary, and save the detailed JSON log.
 def main():
     payloads = json.loads((BASE / "payloads.json").read_text(encoding="utf-8"))
     config = RailsConfig.from_path(str(BASE / "guardrails_config"))

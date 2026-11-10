@@ -12,7 +12,7 @@ AGENT = "securenova-chat-agent-01"
 READ_ONLY = ["read:ai-data"]
 ESCALATED = ["read:ai-data", "write:admin"]
 
-
+# Build one normalized event record per scenario so the detector receives the same event shape across all replay cases.
 def build_event(moment, event_type, scopes, expires, attack):
     return {
         "timestamp": moment.isoformat(timespec="seconds"),
@@ -23,7 +23,7 @@ def build_event(moment, event_type, scopes, expires, attack):
         "replayed_attack": attack,
     }
 
-
+# Replay the payload set at a rate that exceeds the allowed volume threshold to verify the spike detector fires.
 def volume_scenario(payloads, start):
     """Send Project 3 payloads faster than the allowed request rate."""
     expires = start + timedelta(minutes=5)
@@ -33,7 +33,7 @@ def volume_scenario(payloads, start):
         for i, p in enumerate(replayed)
     ]
 
-
+# Simulate a legitimate request followed by a privilege escalation so the scope-change rule can compare before and after.
 def scope_scenario(start):
     """A normal request followed by the F-2 spoofed request asking for admin."""
     expires = start + timedelta(minutes=5)
@@ -42,13 +42,13 @@ def scope_scenario(start):
         build_event(start + timedelta(seconds=5), "agent_request", ESCALATED, expires, "F-2"),
     ]
 
-
+# Reuse a token after expiry to confirm the detector catches stale credentials that continue acting beyond their valid window.
 def token_scenario(start):
     """Replay an attack request 65 seconds after its token expired."""
     expires = start - timedelta(seconds=65)
     return [build_event(start, "token_replay", READ_ONLY, expires, "F-1")]
 
-
+# Run each attack scenario in sequence and compare the actual alerts against the expected rule-specific findings.
 def main():
     payloads = json.loads((BASE / "payloads.json").read_text(encoding="utf-8"))
     start = datetime.now(timezone.utc).replace(microsecond=0)

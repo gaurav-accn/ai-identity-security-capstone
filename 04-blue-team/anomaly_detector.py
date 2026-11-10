@@ -4,19 +4,19 @@ from datetime import datetime
 
 REQUIRED_FIELDS = ("timestamp", "identity", "event_type", "scopes", "token_expires_at")
 
-
+# Parse ISO timestamps to a consistent datetime object so each rule compares times correctly.
 def parse_time(value):
     """Convert an ISO 8601 timestamp into a datetime."""
     return datetime.fromisoformat(value.replace("Z", "+00:00"))
 
-
+# Reject partial records early so every detection rule sees the fields it expects.
 def validate_event(event):
     """Reject incomplete events so that a rule never reads missing data."""
     missing = [field for field in REQUIRED_FIELDS if field not in event]
     if missing:
         raise ValueError(f"Event is missing field(s): {', '.join(missing)}")
 
-
+# Track a rolling history per identity so rules can compare current activity against recent behavior.
 class DetectorState:
     """Remember earlier events for each identity."""
 
@@ -24,7 +24,7 @@ class DetectorState:
         self.request_times = defaultdict(deque)
         self.last_scopes = {}
 
-
+# Format each alert consistently so downstream tooling can parse identity, timestamp, and the reason in one place.
 def make_alert(event, alert_type, detail):
     """Create an alert with the fields required by the brief."""
     return {
@@ -38,7 +38,7 @@ def make_alert(event, alert_type, detail):
 VOLUME_WINDOW_SECONDS = 60
 VOLUME_LIMIT = 20
 
-
+# A burst of requests is suspicious when it exceeds the allowed rate within the rolling time window.
 def detect_volume_spike(event, state):
     """Alert when an identity makes more than 20 LLM requests in 60 seconds."""
     if event["event_type"] != "llm_request":
@@ -63,7 +63,7 @@ def detect_volume_spike(event, state):
 
 AGENT_REQUEST_TYPES = ("llm_request", "agent_request")
 
-
+# Detect privilege drift by comparing the current request scope to the last known scope for that identity.
 def detect_scope_change(event, state):
     """Alert when an identity's scopes differ from its previous request."""
     if event["event_type"] not in AGENT_REQUEST_TYPES:
@@ -84,7 +84,7 @@ def detect_scope_change(event, state):
         f"added={', '.join(added)} removed={', '.join(removed)}",
     )
 
-
+# Flag any request after expiry so stale credentials cannot continue to act after their valid window ends.
 def detect_token_reuse(event, state):
     """Alert when a token is used at or after its expiry time."""
     now = parse_time(event["timestamp"])
@@ -101,7 +101,7 @@ def detect_token_reuse(event, state):
 
 RULES = [detect_volume_spike, detect_scope_change, detect_token_reuse]
 
-
+# Apply each rule in timestamp order so state changes are evaluated in the same sequence as real events.
 def process_events(events):
     """Run every rule on each event in time order and return all alerts."""
     state = DetectorState()

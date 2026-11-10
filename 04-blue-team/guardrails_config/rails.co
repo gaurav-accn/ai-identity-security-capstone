@@ -1,8 +1,11 @@
+# Validate the user message against the configured input guardrail before the bot allows any further processing.
 define flow identity attack check
   $verdict = execute check_identity_attack(text=$user_message)
   if $verdict != "PASS"
+    # Block the request immediately when the attack check flags suspicious content so the model never sees it.
     bot refuse attack
     stop
 
+# Return a fixed refusal message so the user sees a consistent, non-sensitive rejection when the guardrail blocks input.
 define bot refuse attack
   "Request blocked by input guardrail."
