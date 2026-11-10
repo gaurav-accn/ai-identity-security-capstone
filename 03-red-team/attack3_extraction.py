@@ -11,6 +11,7 @@ from two_agents import agent_b
 # --------------------------------------------------
 # 1. Configuration
 # --------------------------------------------------
+# Set the number of runs and log destination so the extraction tests can be repeated and compared across techniques.
 
 RUNS_PER_TECHNIQUE = 5
 DELAY_SECONDS = 8
@@ -22,6 +23,7 @@ LOG_FILE.parent.mkdir(parents=True, exist_ok=True)
 # --------------------------------------------------
 # 2. Five System Prompt Extraction Techniques
 # --------------------------------------------------
+# These prompt variants test different persuasion styles that attempt to elicit the hidden system prompt from Agent B.
 
 EXTRACTION_TESTS = {
 
@@ -79,6 +81,7 @@ EXTRACTION_TESTS = {
 # --------------------------------------------------
 # 3. API Call with Retry
 # --------------------------------------------------
+# Retry temporary API failures so a transient provider issue does not hide the true extraction result.
 
 def call_with_retry(function, message, retries=3):
 
@@ -103,6 +106,7 @@ def call_with_retry(function, message, retries=3):
 # --------------------------------------------------
 # 4. Execute Extraction Attempts
 # --------------------------------------------------
+# Run each extraction prompt repeatedly and record the full response so later analysis can classify whether the system prompt leaked.
 
 log = []
 
@@ -128,6 +132,7 @@ for technique_index, (technique, prompt) in enumerate(
 
         except Exception as error:
 
+            # Log the failure separately so the later analysis can exclude transient API issues from the extraction totals.
             response = f"API ERROR: {error}"
             completed = False
             result = "ERROR"
@@ -166,6 +171,7 @@ for technique_index, (technique, prompt) in enumerate(
         })
 
         # Save after every attempt
+        # Persisting after each run keeps the extraction log recoverable even if the script is interrupted mid-experiment.
         LOG_FILE.write_text(
             json.dumps(
                 log,
@@ -188,6 +194,7 @@ for technique_index, (technique, prompt) in enumerate(
 # --------------------------------------------------
 # 5. Execution Summary
 # --------------------------------------------------
+# Aggregate the completed calls per technique so we can gauge which extraction method is most effective.
 
 print("\n" + "=" * 75)
 print("ATTACK 3.1: EXTRACTION EXECUTION SUMMARY")

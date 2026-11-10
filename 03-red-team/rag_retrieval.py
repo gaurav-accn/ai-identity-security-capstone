@@ -7,6 +7,7 @@ from collections import Counter
 # ==================================================
 # CONFIGURATION
 # ==================================================
+# Point the retriever at the local knowledge-base directory so each retrieval test uses the same text corpus.
 
 RAG_DOCS_DIR = Path("rag_docs")
 
@@ -22,6 +23,7 @@ STOP_WORDS = {
 # ==================================================
 # TEXT PROCESSING
 # ==================================================
+# Normalize each document and question into lower-case tokens so relevance scoring compares the same terms consistently.
 
 def tokenize(text):
     """
@@ -42,6 +44,7 @@ def tokenize(text):
 # ==================================================
 # LOAD KNOWLEDGE BASE
 # ==================================================
+# Read every text file in the doc directory and package each one as a document object for later retrieval.
 
 def load_documents():
 
@@ -71,6 +74,7 @@ def load_documents():
 # ==================================================
 # RETRIEVAL
 # ==================================================
+# Score each document by keyword overlap and return the most relevant subset for the prompt.
 
 def retrieve_documents(question, top_k=2):
 
@@ -118,6 +122,7 @@ def retrieve_documents(question, top_k=2):
 # ==================================================
 # TEST RETRIEVAL
 # ==================================================
+# Run a few sample questions to confirm the retriever returns the expected support and account knowledge.
 
 if __name__ == "__main__":
 

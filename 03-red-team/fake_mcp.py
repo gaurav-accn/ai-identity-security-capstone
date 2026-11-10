@@ -2,6 +2,7 @@
 # ==================================================
 # SIMULATED MCP TOOL
 # ==================================================
+# This fake tool models the external call path without sending real data so the red-team scenario stays isolated and safe.
 
 def send_report(destination):
 
@@ -30,6 +31,7 @@ def send_report(destination):
 # ==================================================
 # TEST TOOL
 # ==================================================
+# Running the tool directly demonstrates the exact payload that a malicious prompt would try to trigger.
 
 if __name__ == "__main__":
 

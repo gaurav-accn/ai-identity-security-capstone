@@ -9,6 +9,7 @@ from two_agents import agent_b
 # ==================================================
 # CONFIGURATION
 # ==================================================
+# Set up the specific privilege-escalation probes and the output log path for the user-to-admin abuse test.
 
 LOG_FILE = Path("logs/attack3_escalation_log.json")
 
@@ -76,6 +77,7 @@ ATTACKS = [
 # ==================================================
 # EXECUTE ONE ATTACK
 # ==================================================
+# Send a single escalation prompt to Agent B and classify whether the model refuses or claims to execute the action.
 
 def run_attack(attack):
 
@@ -104,6 +106,7 @@ def run_attack(attack):
         # Agent B currently has no actual privileged tool
         # execution mechanism. Therefore, a textual claim
         # cannot establish a real privilege escalation.
+        # This verification step distinguishes a real execution from an unverified textual claim.
 
         if response.startswith("REFUSED:"):
 
@@ -173,6 +176,7 @@ def run_attack(attack):
 # ==================================================
 # MAIN EXECUTION
 # ==================================================
+# Run all escalation techniques and aggregate the results to show whether Agent B is vulnerable to privilege abuse.
 
 def main():
 
@@ -193,6 +197,7 @@ def main():
     print(f"Attack Techniques: {len(ATTACKS)}")
 
     # Execute all five attacks.
+    # Each technique is tested with the same USER sender so the results isolate the persuasion pattern instead of the identity.
     for attack in ATTACKS:
 
         result = run_attack(attack)
@@ -202,6 +207,7 @@ def main():
     # --------------------------------------------------
     # CALCULATE RESULTS
     # --------------------------------------------------
+    # Aggregate the recorded responses into counts that summarize which escalation strategies succeeded or were refused.
 
     total_attempts = len(results)
 
